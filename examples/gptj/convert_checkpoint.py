@@ -249,7 +249,7 @@ def convert_hf_gptj(hf_model: GPTJForCausalLM,
         weights['lm_head.weight'] = split_matrix(lm_head_w,
                                                  mapping.tp_size,
                                                  mapping.tp_rank,
-                                                 dim=0)
+                                                 dim=0).contiguous()
         weights['lm_head.bias'] = split_matrix(ln_head_bias,
                                                mapping.tp_size,
                                                mapping.tp_rank,
